@@ -16,13 +16,16 @@
     "precommit": "lint-staged",
     "format": "prettier --write \"**/*.ts\"",
     "format:check": "prettier --check \"**/*.ts\"",
-    "gen:supabase:types": "touch ./src/generated/db.ts && supabase gen types typescript --schema public > ./src/generated/db.ts --project-id <YOUR_PROJECT_ID>"
+    "gen:supabase:types": "touch ./src/generated/db.ts && supabase gen types typescript --schema public > ./src/generated/db.ts --project-id xlydxffahrfwrbwjsjyx"
   },
   "author": "LangChain",
   "license": "MIT",
   "dependencies": {
+    "@langchain/core": "^0.1.43",
+    "@langchain/openai": "^0.0.16",
     "@supabase/supabase-js": "^2.38.4",
     "axios": "^1.6.1",
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "langchain": "^0.0.202",
     "pdf-lib": "^1.17.1",
@@ -43,7 +46,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-unused-imports": "^3.0.0",
     "prettier": "^2.8.3",
-    "supabase": ">=1.8.1",
+    "supabase": "^1.145.4",
     "tsx": "^3.12.3",
     "typescript": "^5.0.0"
   }
