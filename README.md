@@ -16,3 +16,17 @@ If you are not developing with Supabase, delete the `gen:supabase:types` script.
 If you are using Supabase, replace the `<YOUR_PROJECT_ID>` placeholder with your project ID.
 
 The web project is a default Next.js app with Tailwind CSS and TypeScript.
+
+## 03/08/2024
+
+The following will work as of today:
+In postman:
+POST localhost:9000/take_notes
+In body:
+
+```
+{
+    "paperUrl": "https://arxiv.org/pdf/2305.15334.pdf",
+    "name": "Gorilla: Large Language Model Connected with Massive APIs"
+}
+```

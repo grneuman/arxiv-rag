@@ -17,6 +17,16 @@
     "dev": "yarn turbo run dev"
   },
   "devDependencies": {
-    "turbo": "latest"
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.17",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
+    "turbo": "latest",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@tsconfig/recommended": "^1.0.3",
+    "express": "^4.18.2"
   }
 }
