@@ -79,6 +79,10 @@ export async function takeNotes(
   pagesToDelete?: number[]
 ): Promise<ArxivPaperNote[]> {
   const database = await SupabaseDatabase.fromExistingIndex();
+  const existingPaper = await database.getPaper(paperUrl);
+  if (existingPaper) {
+    return existingPaper.notes as Array<ArxivPaperNote>;
+  }
   if (!paperUrl.endsWith("pdf")) {
     throw new Error("Invalid file format: Not a pdf");
   }
