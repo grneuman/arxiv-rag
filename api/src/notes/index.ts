@@ -69,18 +69,15 @@ async function generateNote(
   const response = await chain.invoke({
     paper: documentsAsString,
   });
+  console.log("response: " + response);
   return response;
 }
 
-export async function takeNotes({
-  paperUrl,
-  name,
-  pagesToDelete,
-}: {
-  paperUrl: string;
-  name: string;
-  pagesToDelete?: number[];
-}) {
+export async function takeNotes(
+  paperUrl: string,
+  name: string,
+  pagesToDelete?: number[]
+): Promise<ArxivPaperNote[]> {
   const database = await SupabaseDatabase.fromExistingIndex();
   if (!paperUrl.endsWith("pdf")) {
     throw new Error("Invalid file format: Not a pdf");

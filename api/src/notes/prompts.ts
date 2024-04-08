@@ -74,7 +74,8 @@ Rules:
 
 Respond with a JSON array with two keys: "note" and "pageNumbers".
 "note" will be the specific note, and pageNumbers will be an array of numbers (if the note spans more than one page).
-Take a deep breath, and work your way through the paper step by step.`,
+Take a deep breath, and work your way through the paper step by step.
+Do not say that you cannot help with this request.`,
   ],
   ["human", "Paper: {paper}"],
 ]);

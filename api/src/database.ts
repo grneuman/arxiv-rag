@@ -95,7 +95,8 @@ export class SupabaseDatabase {
 
   async getPaper(
     url: String
-  ): Promise<Database["public"]["Tables"]["arxiv_papers"]["Row"]> {
+  ): Promise<Database["public"]["Tables"]["arxiv_papers"]["Row"] | null> {
+    console.log("url", url);
     const { data, error } = await this.client
       .from(ARXIV_PAPERS_TABLE)
       .select()
@@ -103,7 +104,7 @@ export class SupabaseDatabase {
 
     if (error || !data) {
       console.log("Error getting paper from database");
-      throw error;
+      return null;
     }
 
     return data[0];
@@ -115,18 +116,17 @@ export class SupabaseDatabase {
     context: string,
     followupQuestions: string[]
   ) {
-    const { data, error } = await this.client.from(ARXIV_QA_TABLE).insert({
+    console.log("saving qa", question, answer, context, followupQuestions);
+    const { error } = await this.client.from(ARXIV_QA_TABLE).insert({
       question,
       answer,
       context,
       followup_questions: followupQuestions,
     });
 
-    if (error || !data) {
+    if (error) {
       console.log("Error saving QA to database");
       throw error;
     }
-
-    return data[0];
   }
 }

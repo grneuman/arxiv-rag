@@ -26,6 +26,10 @@ async function qaModel(
 
   const chain =
     QA_OVER_PAPER_PROMPT.pipe(modelWithTools).pipe(answerOutputParser);
+  if (!documents) {
+    throw new Error("No documents found");
+  }
+
   const documentAsString = formatDocumentsAsString(documents);
   const notesAsString = notes.map((note) => note.note).join("\n");
   const response = await chain.invoke({
@@ -42,13 +46,22 @@ export async function qaOnPaper(question: string, paperUrl: string) {
   const documents = await database.vectorStore.similaritySearch(question, 8, {
     url: paperUrl,
   });
-
-  const { notes } = await database.getPaper(paperUrl);
+  console.log("documents");
+  console.log(documents);
+  console.log("paperUrl", paperUrl);
+  const paper = await database.getPaper(paperUrl);
+  console.log("paper");
+  console.log(paper);
+  if (!paper?.notes) {
+    throw new Error("No notes found for paper");
+  }
+  const { notes } = paper;
   const answerAndQuestions = await qaModel(
     question,
     documents,
     notes as unknown as Array<ArxivPaperNote>
   );
+  console.log("answerAndQuestions", answerAndQuestions);
   await Promise.all(
     answerAndQuestions.map(async (qa) => {
       database.saveQa(
